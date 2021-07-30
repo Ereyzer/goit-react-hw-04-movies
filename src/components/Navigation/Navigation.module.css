@@ -1,0 +1,23 @@
+.Links {
+  font-weight: 600;
+  font-size: x-large;
+  text-decoration: none;
+}
+
+.Link {
+  composes: Links;
+  color: black;
+}
+
+.CurrentLink {
+  color: brown;
+}
+
+.Links + .Links {
+  margin-left: 30px;
+}
+
+.Link:focus,
+:hover {
+  color: blue;
+}
