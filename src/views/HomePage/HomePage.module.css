@@ -1,10 +1,7 @@
-.Links {
-  color: blue;
-  font-size: medium;
-  font-weight: 500;
+.Title {
+  color: black;
 }
-
-.Links:hover,
+.Title:hover,
 :focus {
-  color: coral;
+  color: black;
 }

@@ -1,0 +1,12 @@
+.List {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: calc((1200 - 50) / 5);
+  padding: 0;
+}
+
+.Item {
+  margin-left: 28px;
+  width: 200px;
+}

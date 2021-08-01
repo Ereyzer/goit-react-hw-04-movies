@@ -1,0 +1,10 @@
+.Links {
+  color: blue;
+  font-size: medium;
+  font-weight: 500;
+}
+
+.Links:hover,
+:focus {
+  color: coral;
+}

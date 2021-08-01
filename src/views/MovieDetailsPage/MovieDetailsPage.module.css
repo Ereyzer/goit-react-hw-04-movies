@@ -1,0 +1,42 @@
+.Card {
+  display: flex;
+  flex-direction: column;
+}
+
+.InCard {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.AboutFilm {
+  margin-left: 20px;
+}
+
+.Genres {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+}
+
+.Genres li + li {
+  margin-left: 10px;
+}
+
+.Link {
+}
+
+.Link + .Link {
+  margin-left: 20px;
+}
+
+.Information {
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  padding-left: 15px;
+  padding-bottom: 15px;
+}
+
+.Button {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

@@ -13,7 +13,6 @@ export function Navigation() {
         Home
       </NavLink>
       <NavLink
-        exact
         to="/movies"
         className={styles.Link}
         activeClassName={styles.CurrentLink}

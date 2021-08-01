@@ -1,29 +1,45 @@
-// import './App.css';
+import { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import fetchApi from '../../services/fetchApi/fetchApi';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import Loading from '../../services/helpers/Loader';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppBar } from '../AppBar/AppBar';
-import { HomePage } from '../../views/HomePage/HomePage';
+const HomePage = lazy(() =>
+  import(
+    '../../views/HomePage/HomePage.js' /* webpackChunkName: "home-view" */
+  ),
+);
+const MoviesPage = lazy(() =>
+  import(
+    '../../views/MoviesPage/MoviesPage.js' /* webpackChunkName: "movies-view" */
+  ),
+);
 
-// fetchApi.fetchApiInfoCredits(385).then(console.log).catch(e=>{
-//  const er = e.toJSON();
-//   // if () {
-
-//   // }
-//   toast.error(er)
-//   console.log(er)})
+const MovieDetailsPage = lazy(() =>
+  import(
+    '../../views/MovieDetailsPage/MovieDetailsPage.js' /* webpackChunkName: "movie-detail-view" */
+  ),
+);
 
 function App() {
   return (
     <div>
       <AppBar />
 
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-      </Switch>
+      <Suspense fallback={<Loading />}>
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+
+          <Route path="/movies" exact>
+            <MoviesPage />
+          </Route>
+          <Route path="/movies/:movieId">
+            <MovieDetailsPage />
+          </Route>
+        </Switch>
+      </Suspense>
 
       <ToastContainer
         position="top-right"

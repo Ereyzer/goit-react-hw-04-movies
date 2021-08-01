@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import fetchApi from '../../services/fetchApi/fetchApi';
-import { Link, useRouteMatch } from 'react-router-dom';
 import styles from './HomePage.module.css';
 import Container from '../../components/Container/Container';
+import FilmsList from '../../components/FilmsList/FilmsList';
 
-export function HomePage() {
-  const { url } = useRouteMatch();
+export default function HomePage() {
   const [films, setFilms] = useState([]);
 
   useEffect(() => {
     fetchApi
       .fetchApiTrend()
       .then(r => {
-        console.log(r);
         setFilms(r.results);
         return r;
       })
@@ -20,20 +18,8 @@ export function HomePage() {
   }, []);
   return (
     <Container>
-      <h1>Trending today</h1>
-      <ul>
-        {films[0] &&
-          films.map(({ id, original_title }) => {
-            if (original_title)
-              return (
-                <li key={id}>
-                  <Link to={`${url}/${id}`} className={styles.Links}>
-                    {original_title}
-                  </Link>
-                </li>
-              );
-          })}
-      </ul>
+      <h1 className={styles.Title}>Trending today</h1>
+      <FilmsList films={films} />
     </Container>
   );
 }
