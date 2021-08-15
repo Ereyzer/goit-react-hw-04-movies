@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export function ActorCard({ profile_path, character, id, name, className }) {
-  console.log(profile_path);
   return (
     <li className={className}>
       <img src={`https://image.tmdb.org/t/p/w200${profile_path}`} alt={id} />

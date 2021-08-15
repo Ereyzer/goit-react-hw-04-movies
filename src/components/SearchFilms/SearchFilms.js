@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router';
 
 export function SearchFilms({ onSubmit }) {
-  const [searchValue, setSearchValue] = useState('');
+  const location = useLocation();
+  const [searchValue, setSearchValue] = useState(() => {
+    const searchParams = new URLSearchParams(location.search).get('query');
+    return searchParams ? searchParams : '';
+  });
   const handleSubmit = e => {
     e.preventDefault();
     const value = searchValue.trim();

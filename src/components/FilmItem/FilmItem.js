@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from '../FilmsList/FilmList.module.css';
 
 export function FilmItem({ id, original_title, url }) {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search).get('query');
+
   return (
     <li>
       <Link
         to={{
           pathname: `/movies/${id}`,
-          state: { from: url },
+          state: { from: url, search: searchParams },
         }}
         className={styles.Links}
       >

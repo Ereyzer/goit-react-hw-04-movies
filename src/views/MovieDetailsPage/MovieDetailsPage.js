@@ -33,7 +33,13 @@ export default function MovieDetailsPage() {
     });
   }, [movieId]);
 
-  const onGoBack = () => history.push(location?.state?.from ?? '/');
+  const onGoBack = () =>
+    history.push(
+      `${location?.state?.from ?? '/'}${
+        location?.state?.search ? `?query=${location?.state?.search}` : ''
+      }`,
+    );
+  console.log('history', history);
   return (
     <Container>
       <Button
@@ -73,7 +79,10 @@ export default function MovieDetailsPage() {
             <NavLink
               to={{
                 pathname: `${url}/cast`,
-                state: { from: location?.state?.from ?? '/' },
+                state: {
+                  from: location?.state?.from ?? '/',
+                  search: location?.state?.search,
+                },
               }}
               className={styles.Link}
             >
@@ -82,7 +91,10 @@ export default function MovieDetailsPage() {
             <NavLink
               to={{
                 pathname: `${url}/reviews`,
-                state: { from: location?.state?.from ?? '/' },
+                state: {
+                  from: location?.state?.from ?? '/',
+                  search: location?.state?.search,
+                },
               }}
               className={styles.Link}
             >

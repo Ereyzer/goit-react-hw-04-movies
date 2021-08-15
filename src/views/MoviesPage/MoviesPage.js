@@ -5,17 +5,30 @@ import fetchApi from '../../services/fetchApi/fetchApi';
 import FilmsList from '../../components/FilmsList/FilmsList';
 
 import { toast } from 'react-toastify';
+import { useHistory, useLocation } from 'react-router';
 
 export default function MoviesPage() {
-  const [searchValue, setSearchValue] = useState('');
+  const location = useLocation();
+  const [searchValue, setSearchValue] = useState(() => {
+    const searchParams = new URLSearchParams(location.search).get('query');
+    return searchParams ? searchParams : '';
+  });
   const [films, setFilms] = useState([]);
+
+  const history = useHistory();
 
   const onSubmit = value => {
     setSearchValue(value);
+    console.log('submit');
+    history.push({
+      ...location,
+      search: `query=${value}`,
+    });
   };
 
   useEffect(() => {
     if (searchValue === '') return;
+
     fetchApi
       .fetchApiSearch(searchValue)
       .then(r => {
@@ -24,7 +37,6 @@ export default function MoviesPage() {
         setFilms(r.results);
         return r;
       })
-      .then(console.log)
       .catch(e => {
         toast.error(e.message);
       });

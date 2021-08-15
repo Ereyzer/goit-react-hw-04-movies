@@ -1,7 +1,7 @@
 [build]
-  publish = "buid"
+  publish = "build"
 
-[[redirect]]
-  form = "/*"
+[[redirects]]
+  from = "/*"
   to = "/index.html"
   status = 200
