@@ -3,6 +3,7 @@ import fetchApi from '../../services/fetchApi/fetchApi';
 import styles from './HomePage.module.css';
 import Container from '../../components/Container/Container';
 import FilmsList from '../../components/FilmsList/FilmsList';
+import IntroductionTour from '../../introductionTourFramework/App';
 
 export default function HomePage() {
   const [films, setFilms] = useState([]);
@@ -17,9 +18,9 @@ export default function HomePage() {
       .catch(e => console.log(e.toJSON()));
   }, []);
   return (
-    <Container>
+    <IntroductionTour title="homePage" className="Container">
       <h1 className={styles.Title}>Trending today</h1>
       <FilmsList films={films} />
-    </Container>
+    </IntroductionTour>
   );
 }

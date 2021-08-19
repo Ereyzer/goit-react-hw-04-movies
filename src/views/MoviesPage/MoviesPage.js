@@ -3,7 +3,7 @@ import { SearchFilms } from '../../components/SearchFilms/SearchFilms';
 import Container from '../../components/Container/Container';
 import fetchApi from '../../services/fetchApi/fetchApi';
 import FilmsList from '../../components/FilmsList/FilmsList';
-
+import IntroductionTour from '../../introductionTourFramework/App';
 import { toast } from 'react-toastify';
 import { useHistory, useLocation } from 'react-router';
 
@@ -44,12 +44,12 @@ export default function MoviesPage() {
 
   return (
     <div>
-      <Container>
+      <IntroductionTour title="SearchFilms" className="Container">
         <SearchFilms onSubmit={onSubmit} />
-      </Container>
-      <Container>
+      </IntroductionTour>
+      <IntroductionTour title="FilmsListInMoviesPage" className="Container">
         <FilmsList films={films} />
-      </Container>
+      </IntroductionTour>
     </div>
   );
 }

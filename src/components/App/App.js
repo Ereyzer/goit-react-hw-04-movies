@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import Loading from '../../services/helpers/Loader';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppBar } from '../AppBar/AppBar';
+import { TourBackdrop } from '../../introductionTourFramework/TourBackdropBtns/TourBackdrop';
 const HomePage = lazy(() =>
   import(
     '../../views/HomePage/HomePage.js' /* webpackChunkName: "home-view" */
@@ -21,9 +22,14 @@ const MovieDetailsPage = lazy(() =>
   ),
 );
 
+const tourConfig = {
+  baseUrl: 'https://my-server-app-introdution.herokuapp.com/',
+  // baseUrl: 'http://localhost:4444',
+};
+
 function App() {
   return (
-    <div>
+    <TourBackdrop config={tourConfig}>
       <AppBar />
 
       <Suspense fallback={<Loading />}>
@@ -54,7 +60,7 @@ function App() {
       />
       {/* Same as */}
       <ToastContainer />
-    </div>
+    </TourBackdrop>
   );
 }
 

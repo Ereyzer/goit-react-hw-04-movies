@@ -1,10 +1,15 @@
 import React from 'react';
 import { Navigation } from '../Navigation/Navigation';
 import styles from './AppBar.module.css';
+import IntroductionTour from '../../introductionTourFramework/App';
 export function AppBar() {
   return (
-    <header className={styles.Header}>
+    <IntroductionTour
+      className={styles.Header}
+      tag="header"
+      title="navigationInHeader"
+    >
       <Navigation />
-    </header>
+    </IntroductionTour>
   );
 }

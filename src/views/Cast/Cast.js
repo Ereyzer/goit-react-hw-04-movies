@@ -4,6 +4,7 @@ import { ActorCard } from '../../components/ActorCard/ActorCard';
 import styles from './Cast.module.css';
 import Loading from '../../services/helpers/Loader';
 import PropTypes from 'prop-types';
+import IntroductionTour from '../../introductionTourFramework/App';
 
 export default function Cast({ movieId }) {
   const [status, setStatus] = useState('pending');
@@ -31,7 +32,7 @@ export default function Cast({ movieId }) {
 
   if (status === 'resolved')
     return (
-      <ul className={styles.List}>
+      <IntroductionTour title="castList" tag="ul" className={styles.List}>
         {cast.map(({ profile_path, character, id, name }) => {
           if (id === 118236) {
             return null;
@@ -47,7 +48,7 @@ export default function Cast({ movieId }) {
             />
           );
         })}
-      </ul>
+      </IntroductionTour>
     );
 }
 

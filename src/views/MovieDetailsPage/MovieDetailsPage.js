@@ -13,6 +13,8 @@ import {
 import Container from '../../components/Container/Container';
 import fetchApi from '../../services/fetchApi/fetchApi';
 import styles from './MovieDetailsPage.module.css';
+import IntroductionTour from '../../introductionTourFramework/App';
+
 const Cast = lazy(() =>
   import('../Cast/Cast.js' /* webpackChunkName: "home-view" */),
 );
@@ -39,9 +41,9 @@ export default function MovieDetailsPage() {
         location?.state?.search ? `?query=${location?.state?.search}` : ''
       }`,
     );
-  console.log('history', history);
+  // console.log('history', history);
   return (
-    <Container>
+    <IntroductionTour title="movieDetailPage" className="Container">
       <Button
         type="button"
         variant="contained"
@@ -114,6 +116,6 @@ export default function MovieDetailsPage() {
           </Route>
         </Switch>
       </div>
-    </Container>
+    </IntroductionTour>
   );
 }

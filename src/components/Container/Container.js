@@ -9,3 +9,4 @@ export default function Container({ children }) {
 Container.propTypes = {
   children: PropTypes.node,
 };
+//! раніше тут був контейнер для обгортання компонентів тепер він не потрібний

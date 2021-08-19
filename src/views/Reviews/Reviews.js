@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import fetchApi from '../../services/fetchApi/fetchApi';
 import Loading from '../../services/helpers/Loader';
 import PropTypes from 'prop-types';
+import IntroductionTour from '../../introductionTourFramework/App';
 
 export default function Reviews({ movieId }) {
   const [status, setStatus] = useState('pending');
@@ -29,7 +30,7 @@ export default function Reviews({ movieId }) {
 
   if (status === 'resolved') {
     return (
-      <ul>
+      <IntroductionTour title="reviewsList" className="Container" tag="ul">
         {review.map(({ author, content, created_at, id }) => (
           <li key={id}>
             <h3>Author: {author}</h3>
@@ -37,7 +38,7 @@ export default function Reviews({ movieId }) {
             <p>Created at: {created_at}</p>
           </li>
         ))}
-      </ul>
+      </IntroductionTour>
     );
   }
 }
