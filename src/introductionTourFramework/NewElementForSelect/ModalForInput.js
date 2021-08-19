@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './ModalForInput.module.css';
 
@@ -22,6 +22,8 @@ export function ModalForInput({ addDescription, closeModal }) {
             value={value}
             onChange={e => setValue(e.target.value)}
             className={styles.Textarea}
+            cols="50"
+            rows="10"
           ></textarea>
         </label>
         <button type="submit">add description</button>

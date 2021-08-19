@@ -1,10 +1,4 @@
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  useContext,
-  useReducer,
-} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './TourBtns.module.css';
 import controlBtnsOnOfContext from '../helpers/context';
@@ -20,14 +14,9 @@ export function TourBtns({ changeIsStartAddElements }) {
     changeIsStartAddElements(status);
   }, [status]);
 
-  // console.log(ctx);
-
   const addSelectItem = () => {
-    // const elements = window.localStorage.getItem('elements');
-    // console.log(ctx.apiService);
     console.log(ctx.elements);
-    // ctx.apiService.postElements(ctx.elements);
-    // console.log(elements);\
+
     ctx.dispatchModal({ type: 'on' });
     ctx.dispatchButton({ type: 'off' });
   };

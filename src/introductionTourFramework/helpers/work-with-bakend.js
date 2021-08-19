@@ -26,7 +26,7 @@ class ApiService {
   }
 
   getElements() {
-    console.log('get');
+    // console.log('get');
     return axios
       .get(this.BASE_URL)
       .then(r => r)

@@ -1,30 +1,9 @@
-import React, { useReducer, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import JoyRide, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import controlBtnsOnOfContext from '../helpers/context';
 
-// const TOUR_STEPS = [
-//   {
-//     target: '[tour-attribute="formForAddContacts"] form input[name="name"]',
-//     content: 'Write the name of the subscriber',
-//   },
-
-//   {
-//     target: '.MuiButton-label',
-//     content: 'Save the contact',
-//   },
-//   {
-//     target: '.Filter_Input__2-B-n',
-//     content: 'Start typing a contact name to filter',
-//   },
-//   {
-//     target: '[tour-attribute="listOfContacts"] ul li div',
-//     content: 'You can delete a contact',
-//   },
-// ];
-
 const Tour = () => {
   const ctx = useContext(controlBtnsOnOfContext);
-  console.log(ctx.tourState.steps);
 
   useEffect(() => {
     if (!localStorage.getItem('tour')) {
@@ -34,14 +13,13 @@ const Tour = () => {
 
   const callback = data => {
     const { action, index, type, status } = data;
-    console.log('callback', data);
 
     if (
       action === ACTIONS.CLOSE ||
       (status === STATUS.SKIPPED && ctx.tourState.run) ||
       status === STATUS.FINISHED
     ) {
-      ctx.dispatchTourState({ type: 'STOP' });
+      ctx.dispatchTourState({ type: 'STOP', steps: [] });
       const oldLocaleStorage = JSON.parse(localStorage.getItem('shownElements'))
         ? JSON.parse(localStorage.getItem('shownElements'))
         : [];
@@ -52,6 +30,7 @@ const Tour = () => {
           ...ctx.tourState.steps.map(({ id }) => id),
         ]),
       );
+      ctx.seShownElements(JSON.parse(localStorage.getItem('shownElements')));
     } else if (type === EVENTS.STEP_AFTER || type === EVENTS.TARGET_NOT_FOUND) {
       ctx.dispatchTourState({
         type: 'NEXT_OR_PREV',

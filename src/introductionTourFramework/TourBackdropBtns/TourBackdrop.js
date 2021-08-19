@@ -1,11 +1,8 @@
 import React, { useState, useRef, useEffect, useReducer } from 'react';
-
 import { TourBtns } from '../TourBtns/TourBtns';
 import controlBtnsOnOfContext from '../helpers/context';
-// import { isAdmin } from '../helpers/isAdmin';
 import ApiService from '../helpers/work-with-bakend';
 import ModalMain from '../ModalMain/ModalMain';
-import '../Interface/Interface';
 import { NewDom } from '../NewDom/NewDom';
 import Tour from '../Tour/Tour';
 
@@ -15,7 +12,7 @@ const INITIAL_STATE = {
   continuous: true,
   loading: false,
   stepIndex: 0,
-  steps: null,
+  steps: [],
 };
 
 function reducer(state, action) {
@@ -39,7 +36,7 @@ const reducerStepsTour = (state = INITIAL_STATE, action) => {
     case 'RESET':
       return { ...state, stepIndex: 0 };
     case 'STOP':
-      return { ...state, run: false };
+      return { ...state, run: false, steps: [] };
     case 'NEXT_OR_PREV':
       return { ...state, ...action.payload };
     case 'RESTART':
@@ -58,11 +55,11 @@ const reducerStepsTour = (state = INITIAL_STATE, action) => {
 
 export function TourBackdrop({ className = null, children, config }) {
   const apiService = new ApiService(config);
+
   const [isStartAddElements, setIsStartAddElements] = useState(false);
   const [elements, setElements] = useState([]);
   const [isAdminM, dispatchModal] = useReducer(reducer, false);
   const [isAdminB, dispatchButton] = useReducer(reducer, false);
-  const [myTestNewDom, setMyTestNewDom] = useState(true);
   const [isModalDescription, setIsModalDescription] = useState(false);
   const [path, setPath] = useState('');
   const backdropRef = useRef(null);
@@ -70,7 +67,8 @@ export function TourBackdrop({ className = null, children, config }) {
     reducerStepsTour,
     INITIAL_STATE,
   );
-  const [shownElements, seShownElements] = useState(
+  // console.log('tourState.steps', tourState.steps);
+  const [shownElements, seShownElements] = useState(() =>
     JSON.parse(localStorage.getItem('shownElements')),
   );
 
@@ -78,17 +76,11 @@ export function TourBackdrop({ className = null, children, config }) {
 
   useEffect(() => {
     runOnKeys(dispatchModal, 'KeyL', 'KeyS', 'KeyD');
-    // if (keyListener.current) {
-    //   console.log('s');
-    //   window.addEventListener('keypress', onKeyPressClick);
-    // }
-    // keyListener.current = false;
+
     apiService.getElements().then(r => {
       setElements(s => [...s, ...r.data]);
       return r.data;
     });
-
-    console.log('fetch');
   }, []);
   return (
     <controlBtnsOnOfContext.Provider
@@ -112,7 +104,7 @@ export function TourBackdrop({ className = null, children, config }) {
     >
       <div className={className} ref={backdropRef}>
         {children}
-        {!isAdminM && !isAdminB && tourState.steps && <Tour />}
+        {!isAdminM && !isAdminB && tourState?.steps[0] && <Tour />}
         {isAdminB && (
           <TourBtns changeIsStartAddElements={setIsStartAddElements} />
         )}

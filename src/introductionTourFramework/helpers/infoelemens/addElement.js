@@ -25,9 +25,8 @@ export function addElement(oldPath, description, addToDbFunc) {
   }, '');
   elements.push({ path, description });
   addLocaleStorage();
-  console.log(path, description);
   addToDbFunc(s => [...s, { path, description }]);
-  return console.log(elements);
+  return;
 }
 
 function addLocaleStorage() {

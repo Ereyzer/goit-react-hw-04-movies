@@ -1,9 +1,6 @@
 import React, { useRef, useEffect, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import controlBtnsOnOfContext from '../helpers/context';
-import { NewDomElement } from './NewDomElement';
-import { v4 as uuidv4 } from 'uuid';
-import { element } from 'prop-types';
 import styles from './NewDom.module.css';
 
 export function NewDom({ reference }) {
