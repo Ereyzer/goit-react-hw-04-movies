@@ -13,7 +13,7 @@ import {
 import Container from '../../components/Container/Container';
 import fetchApi from '../../services/fetchApi/fetchApi';
 import styles from './MovieDetailsPage.module.css';
-import IntroductionTour from '../../introductionTourFramework/App';
+import { IntroductionTour } from 'my-test-joyride';
 
 const Cast = lazy(() =>
   import('../Cast/Cast.js' /* webpackChunkName: "home-view" */),

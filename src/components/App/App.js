@@ -4,7 +4,8 @@ import { ToastContainer } from 'react-toastify';
 import Loading from '../../services/helpers/Loader';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppBar } from '../AppBar/AppBar';
-import { TourBackdrop } from '../../introductionTourFramework/TourBackdropBtns/TourBackdrop';
+// import { TourBackdrop } from '../../introductionTourFramework/TourBackdropBtns/TourBackdrop';
+import { TourBackdrop } from 'my-test-joyride';
 const HomePage = lazy(() =>
   import(
     '../../views/HomePage/HomePage.js' /* webpackChunkName: "home-view" */

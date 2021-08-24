@@ -4,7 +4,7 @@ import { ActorCard } from '../../components/ActorCard/ActorCard';
 import styles from './Cast.module.css';
 import Loading from '../../services/helpers/Loader';
 import PropTypes from 'prop-types';
-import IntroductionTour from '../../introductionTourFramework/App';
+import { IntroductionTour } from 'my-test-joyride';
 
 export default function Cast({ movieId }) {
   const [status, setStatus] = useState('pending');

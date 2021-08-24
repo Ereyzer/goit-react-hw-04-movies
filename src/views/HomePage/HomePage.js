@@ -3,7 +3,7 @@ import fetchApi from '../../services/fetchApi/fetchApi';
 import styles from './HomePage.module.css';
 import Container from '../../components/Container/Container';
 import FilmsList from '../../components/FilmsList/FilmsList';
-import IntroductionTour from '../../introductionTourFramework/App';
+import { IntroductionTour } from 'my-test-joyride';
 
 export default function HomePage() {
   const [films, setFilms] = useState([]);

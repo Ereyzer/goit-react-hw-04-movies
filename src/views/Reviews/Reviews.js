@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import fetchApi from '../../services/fetchApi/fetchApi';
 import Loading from '../../services/helpers/Loader';
 import PropTypes from 'prop-types';
-import IntroductionTour from '../../introductionTourFramework/App';
+import { IntroductionTour } from 'my-test-joyride';
 
 export default function Reviews({ movieId }) {
   const [status, setStatus] = useState('pending');
